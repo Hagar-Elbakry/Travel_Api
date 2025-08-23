@@ -14,4 +14,9 @@ class TravelController extends Controller
         $travel = Travel::create($request->all());
         return new TravelResource($travel);
     }
+
+    public function update(TravelRequest $request, Travel $travel) {
+        $travel->update($request->validated());
+        return new TravelResource($travel);
+    }
 }

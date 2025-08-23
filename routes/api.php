@@ -14,7 +14,12 @@ Route::prefix('v1')->group(function () {
     Route::post('login', LoginController::class);
 });
 
-Route::prefix('v1/admin')->middleware(['auth:sanctum', 'role:admin'])->group(function () {
-    Route::post('travels', [Admin\TravelController::class, 'store']);
-    Route::post('travels/{travel:slug}/tours', [Admin\TourController::class, 'store']);
+Route::prefix('v1/admin')->middleware('auth:sanctum')->group(function () {
+
+    Route::middleware('role:admin')->group(function () {
+        Route::post('travels', [Admin\TravelController::class, 'store']);
+        Route::post('travels/{travel:slug}/tours', [Admin\TourController::class, 'store']);
+    });
+
+    Route::patch('travels/{travel:slug}', [Admin\TravelController::class, 'update']);
 });

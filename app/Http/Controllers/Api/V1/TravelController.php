@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TravelRequest;
 use App\Http\Resources\TravelResource;
 use App\Models\Travel;
 use Illuminate\Http\Request;
